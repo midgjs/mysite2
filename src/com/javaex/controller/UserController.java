@@ -117,8 +117,8 @@ public class UserController extends HttpServlet {
 			UserDao userDao = new UserDao();
 			userDao.insert(userVo);
 			
-			//포워드
-			WebUtil.forword(request, response, "/WEB-INF/views/user/modify.jsp");
+			
+			WebUtil.redirect(request, response, "/mysite2/main");
 		
 			
 		}
