@@ -99,7 +99,8 @@ public class UserController extends HttpServlet {
 		
 		}else if("modifyForm".equals(action)) {
 			//System.out.println("UserController>modifyForm");
-			
+			HttpSession session = request.getSession();
+			request.getSession();          
 			//포워드
 			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
 		} else if("modify".equals(action)) {
