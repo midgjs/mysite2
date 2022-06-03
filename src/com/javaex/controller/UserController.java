@@ -86,7 +86,7 @@ public class UserController extends HttpServlet {
 				
 			}
 			
-		}else if("logout".equals(action)) {
+		}else if("logout".equals(action)) { //로그아웃
 			System.out.println("UserController>logout");
 			
 			//세션값을 지운다
@@ -96,6 +96,30 @@ public class UserController extends HttpServlet {
 			
 			//메인으로 리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/main");
+		
+		}else if("modifyForm".equals(action)) {
+			//System.out.println("UserController>modifyForm");
+			
+			//포워드
+			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+		} else if("modify".equals(action)) {
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			
+			//Vo만들기
+			UserVo userVo = new UserVo(id, name, password, gender);
+			System.out.println(userVo);
+			
+			//Dao를 이용해서 저장하기
+			UserDao userDao = new UserDao();
+			userDao.insert(userVo);
+			
+			//포워드
+			WebUtil.forword(request, response, "/WEB-INF/views/user/modify.jsp");
+		
+			
 		}
 		
 		
