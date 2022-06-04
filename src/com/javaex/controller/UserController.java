@@ -97,32 +97,49 @@ public class UserController extends HttpServlet {
 			//메인으로 리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/main");
 		
-		}else if("modifyForm".equals(action)) {
-			//System.out.println("UserController>modifyForm");
+		}else if("modifyForm".equals(action)) { //수정폼
+			System.out.println("UserController>modifyForm");
+		
+			//로그인한 사용자의  no 값을 세션에서 가져오기
 			HttpSession session = request.getSession();
-			request.getSession();          
-			//포워드
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//no 로 사용자 정보 가져오기
+			UserDao userDao = new UserDao();
+			UserVo userVo = userDao.getUser(no);  //no id password name gender
+			
+			//request 의 attribute 에 userVo 는 넣어서 포워딩
+			request.setAttribute("userVo", userVo);
 			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
-		} else if("modify".equals(action)) {
-			String id = request.getParameter("id");
+		
+		}else if("modify".equals(action)) { //수정
+			System.out.println("UserController>modify");
+			
+			//세션에서 no
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//파라미터꺼낸다
 			String password = request.getParameter("password");
 			String name = request.getParameter("name");
 			String gender = request.getParameter("gender");
 			
-			//Vo만들기
-			UserVo userVo = new UserVo(id, name, password, gender);
-			System.out.println(userVo);
+			//묶어준다
+			UserVo userVo = new UserVo();
+			userVo.setNo(no);
+			userVo.setPassword(password);
+			userVo.setName(name);
+			userVo.setGender(gender);
 			
-			//Dao를 이용해서 저장하기
+			//dao를 사용한다
 			UserDao userDao = new UserDao();
-			userDao.insert(userVo);
+			int count = userDao.update(userVo);
 			
-			
+			//리다이렉트(main)
 			WebUtil.redirect(request, response, "/mysite2/main");
-		
-			
 		}
-		
 		
 	}
 
