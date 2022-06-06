@@ -1,13 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.javaex.vo.UserVo" %>
+<%@ page import = "java.util.List" %>
+<%@ page import = "com.javaex.vo.GuestbookVo" %>
+<%@ page import = "com.javaex.dao.GuestbookDao" %>
 
+<%
+	UserVo userVo = (UserVo)request.getAttribute("userVo");
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	
+	GuestbookDao dao = new GuestbookDao();
+	List<GuestbookVo> list = dao.getList();
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -21,7 +33,7 @@
 
 			<!-- 
 			<ul>
-				<li>황일영 님 안녕하세요^^</li>
+				<li>이재훈 님 안녕하세요^^</li>
 				<li><a href="" class="btn_s">로그아웃</a></li>
 				<li><a href="" class="btn_s">회원정보수정</a></li>
 			</ul>
@@ -69,7 +81,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="/mysite2/guestbook?" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -98,43 +110,27 @@
 						
 					</form>	
 					
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>
+					<% for(int i = 0; i<list.size(); i++){%>
+						<table class="guestRead">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width: 40%;">
+								<col style="width: 40%;">
+								<col style="width: 10%;">
+							</colgroup>
+							<tr>
+								<td><%=list.get(i).getNo()%>
+								<td><%=list.get(i).getName()%></td>
+								<td><%=list.get(i).getRegDate()%></td>
+								<td><a href="./guestbook?action=deleteForm&no=<%=list.get(i).getNo()%>">삭제</a>
+							</tr>
+							<tr>
+								<td colspan="4"><%=list.get(i).getContent() %></td>
+							</tr>
+						</table>
+					<% } %>	
 					<!-- //guestRead -->
 					
-					<table class="guestRead">
-						<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>	
-					<!-- //guestRead -->
 					
 				</div>
 				<!-- //guestbook -->

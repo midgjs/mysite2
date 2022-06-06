@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.javaex.vo.UserVo" %>
+<%@ page import="com.javaex.vo.GuestbookVo" %>
+
+<%
+	UserVo userVo = (UserVo)request.getAttribute("userVo");
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	int no = Integer.parseInt(request.getParameter("no"));
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -20,7 +28,7 @@
 
 			<!-- 
 			<ul>
-				<li>황일영 님 안녕하세요^^</li>
+				<li>이재훈 님 안녕하세요^^</li>
 				<li><a href="" class="btn_s">로그아웃</a></li>
 				<li><a href="" class="btn_s">회원정보수정</a></li>
 			</ul>
@@ -69,7 +77,7 @@
 				<!-- //content-head -->
 	
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="/mysite2/guestbook?" method="get">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -84,8 +92,8 @@
 								<td><a href="/guestbook2/gbc">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="" value="">
-						<input type='hidden' name="" value="">
+						<input type="text" name="number" value="<%=no%>">
+						<input type='hidden' name="action" value="delete">
 					</form>
 					
 				</div>
