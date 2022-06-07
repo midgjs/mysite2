@@ -2,8 +2,8 @@
 <%@ page import="com.javaex.vo.UserVo" %>
 
 <%		
-		//헤더 로그인
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+	//헤더 로그인
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
 %>
 
 <div id="header" class="clearfix">
@@ -23,6 +23,5 @@
 			<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
 		</ul>
 	<%}%>
-	
 	
 </div>

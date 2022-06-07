@@ -2,7 +2,7 @@
 <%@ page import="com.javaex.vo.UserVo" %>
 
 <%	
-	//헤더 로그인
+	//수정폼
 	UserVo userVo = (UserVo)request.getAttribute("userVo");
 %>
 

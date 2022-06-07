@@ -40,7 +40,7 @@
 					<div id="greetings">
 						<p class="text-xlarge">
 							<span class="bold">안녕하세요!!<br>
-							정우성의 MySite에 오신 것을 환영합니다.<br>
+							이재훈의 MySite에 오신 것을 환영합니다.<br>
 							<br>
 							이 사이트는 웹 프로그램밍 실습과제 예제 사이트입니다.<br>
 							</span>
