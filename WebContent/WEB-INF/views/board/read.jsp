@@ -22,7 +22,7 @@
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
+				<li><a href="/mysite2/board">게시판</a></li>
 				<li><a href="">갤러리</a></li>
 				<li><a href="">방명록</a></li>
 			</ul>
@@ -56,7 +56,7 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="/mysite/board" method="get">
+						<form action="/mysite2/board" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
