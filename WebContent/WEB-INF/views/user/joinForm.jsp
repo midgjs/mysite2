@@ -56,7 +56,7 @@
 				<div id="user">
 					<div id="joinForm">
 						<form action="/mysite2/user" method="get">
-							<input type="text" name="action" value="join">
+							<input type="text" name="action" value="">
 	
 	
 							<!-- 아이디 -->
